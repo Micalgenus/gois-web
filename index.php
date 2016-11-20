@@ -34,11 +34,23 @@ session_start();
       <a class="navbar-brand" href="https://gois.me/index.php"><img src="image/title.png" alt="title.png" /></a>
     </div>
 		<form class="navbar-form navbar-right" style="margin-top:25px;">
-      <div class="form-group">
+		<?php
+		//logined
+		if(isset($_SESSION['loged_id']) && isset($_SESSION['loged_u_key'])){
+			echo '
+			<input type="button" class="btn btn-default" id="loadLogout" value="로그아웃">';
+		}
+		//unlogined
+		else{
+			echo '<div class="form-group">
         <input type="text" class="form-control" id="login_id" placeholder="아이디">
 				<input type="password" class="form-control" id="login_pw" placeholder="비밀번호">
       </div>
-			<input type="button" class="btn btn-default" id="loadLogin" value="로그인">
+			<input type="button" class="btn btn-default" id="loadLogin" value="로그인">';
+		}
+		?>
+      
+
     </form>
 		
   </div>
