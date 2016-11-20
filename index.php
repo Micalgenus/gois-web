@@ -154,9 +154,15 @@ $("#loadLogin").click(function(){
     if (this.readyState == 4 && this.status == 200) {
 
 			var result = this.responseText;
-
-			
 			document.getElementById('demo').innerHTML=result;
+
+			if(result == 100){
+				alert("로그인 성공!");
+				document.location.href='index.php';
+			}
+			else{
+				alert("로그인 실패!");
+			}
 			//
     }
   };
