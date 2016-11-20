@@ -187,6 +187,30 @@ $("#loadLogin").click(function(){
 
   xhttp.send(str);
 });
+
+$("#loadLogout").click(function(){
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			if(result == 100){
+				alert("로그아웃!");
+			}
+    }
+  };
+  xhttp.open("POST", "./GodHose/bridge.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhttp.send("logout=true");
+});
 </script>
 
 </body>
