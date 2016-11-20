@@ -106,7 +106,7 @@ $("#loadAccount").click(function(){
 			document.getElementById('demo').innerHTML=result;
     }
   };
-  xhttp.open("POST", "bridge.php", true);
+  xhttp.open("POST", "./GodHose/bridge.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	var str="";
@@ -148,7 +148,7 @@ $("#loadLogin").click(function(){
 			//
     }
   };
-  xhttp.open("POST", "bridge.php", true);
+  xhttp.open("POST", "./GodHose/bridge.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	var str="";
