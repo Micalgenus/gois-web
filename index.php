@@ -28,33 +28,7 @@ session_start();
 </head>
 <body>
 
-<nav class="navbar navbar-inverse" style="padding-bottom:15px;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://gois.me/index.php"><img src="image/title.png" alt="title.png" /></a>
-    </div>
-		<form class="navbar-form navbar-right" style="margin-top:25px;">
-		<?php
-		//logined
-		if(isset($_SESSION['loged_id'])){
-			echo '
-			<input type="button" class="btn btn-default" id="loadLogout" value="로그아웃">';
-		}
-		//unlogined
-		else{
-			echo '<div class="form-group">
-        <input type="text" class="form-control" id="login_id" placeholder="아이디">
-				<input type="password" class="form-control" id="login_pw" placeholder="비밀번호">
-      </div>
-			<input type="button" class="btn btn-default" id="loadLogin" value="로그인">';
-		}
-		?>
-      
-
-    </form>
-		
-  </div>
-</nav> 
+<?php include 'header.php'; ?>
   
 <div class="container">
 
@@ -96,6 +70,10 @@ session_start();
 	
 	<div class="row">
 		<p id="demo">test...</p>
+		<form method="post" action="./GodHose/bridge.php">
+			<input type="text" name="select_id" value="dkdlrja">
+			<input type="submit">
+		</form>
 	</div>
 	
 </div>
@@ -170,7 +148,7 @@ $("#loadLogin").click(function(){
 
 			if(result == 100){
 				alert("로그인 성공!");
-				document.location.href='index.php';
+				document.location.href='main.php';
 			}
 			else{
 				alert("로그인 실패!");
