@@ -103,6 +103,27 @@ $("#loadAccount").click(function(){
     if (this.readyState == 4 && this.status == 200) {
 
 			var result = this.responseText;
+
+			if(result == 100){
+				alert("성공적으로 계정을 생성했습니다");
+				document.location.href='index.php';
+			}
+			else if(result == 300){
+				alert("이미 존재하는 아이디입니다");
+			}
+			else if(result == 301 || result == 310){
+				alert("등록할 수 없는 아이디 형식입니다");
+			}
+			else if(result == 400 || result == 401){
+				alert("등록할 수 없는 비밀번호 형식입니다");
+			}
+			else if(result == 500){
+				alert("이미 존재하는 별명입니다");
+			}
+			else if(result == 501 || result == 510){
+				alert("등록할 수 없는 별명 형식입니다");
+			}
+
 			document.getElementById('demo').innerHTML=result;
     }
   };
@@ -134,25 +155,7 @@ $("#loadLogin").click(function(){
 
 			var result = this.responseText;
 
-			if(result == 100){
-				alert("성공적으로 계정을 생성했습니다");
-				document.location.href='index.php';
-			}
-			else if(result == 300){
-				alert("이미 존재하는 아이디입니다");
-			}
-			else if(result == 301 || result == 310){
-				alert("등록할 수 없는 아이디 형식입니다");
-			}
-			else if(result == 400 || result == 401){
-				alert("등록할 수 없는 비밀번호 형식입니다");
-			}
-			else if(result == 500){
-				alert("이미 존재하는 별명입니다");
-			}
-			else if(result == 501 || result == 510){
-				alert("등록할 수 없는 별명 형식입니다");
-			}
+			
 			document.getElementById('demo').innerHTML=result;
 			//
     }
