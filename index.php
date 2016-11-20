@@ -36,7 +36,7 @@ session_start();
 		<form class="navbar-form navbar-right" style="margin-top:25px;">
 		<?php
 		//logined
-		if(isset($_SESSION['loged_id']) && isset($_SESSION['loged_u_key'])){
+		if(isset($_SESSION['loged_id'])){
 			echo '
 			<input type="button" class="btn btn-default" id="loadLogout" value="로그아웃">';
 		}
