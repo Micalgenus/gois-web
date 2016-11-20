@@ -1,0 +1,83 @@
+body{
+	margin:0;
+}
+
+span.omgHelp{
+	display: inline-block;
+	text-decoration:underline;
+}
+
+span.omgHelp-content{
+	opacity:0;
+	background-color:lightgrey;
+	padding:6px;
+	border-radius:6px;
+	position:absolute;
+	z-index: 1;
+	margin-top:20px;
+}
+
+span.omgHelp:hover span.omgHelp-content{
+	opacity:1;
+	transition:1s;
+}
+
+.clickHint-content{
+	opacity:0;
+	background-color:lightgrey;
+	padding:6px;
+	border-radius:6px;
+
+	position:absolute;
+	z-index: 1;
+	margin-top:20px;
+}
+
+a.clickHint:hover clickHint-content{
+	opacity:1;
+	transition:1s;
+}
+
+ul.topnav {
+	list-style-type:none;
+	position:static;
+	background-color:grey;
+	padding:0;
+	margin:0;
+	width:100%;
+	overflow:hidden;
+}
+
+ul.topnav li{
+	float:left;
+	border-right:1px solid #bbb;
+}
+
+ul.topnav li a{
+	display:block;
+	padding:14px 16px;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+}
+
+ul.topnav li a:hover{
+	background-color:black;
+	transition-duration: 0.8s;
+}
+
+div.home {
+	width:200px;    
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+div.incontent {
+	margin-left: 220px;
+}
+
+.login_box {margin-top: 100px; width: 1000px; height: 300px; border: 2px sold #000; background-color:#0091E4;}
