@@ -203,6 +203,7 @@ $("#loadLogout").click(function(){
 			var result = this.responseText;
 			if(result == 100){
 				alert("로그아웃!");
+				document.location.href='index.php';
 			}
     }
   };
