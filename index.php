@@ -153,7 +153,7 @@ $("#loadLogin").click(function(){
 			else if(result == 501 || result == 510){
 				alert("등록할 수 없는 별명 형식입니다");
 			}
-			else document.getElementById('demo').innerHTML=result;
+			document.getElementById('demo').innerHTML=result;
 			//
     }
   };
