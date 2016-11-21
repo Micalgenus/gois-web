@@ -1,7 +1,14 @@
 <nav class="navbar navbar-inverse" style="padding-bottom:15px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="https://gois.me/index.php"><img src="image/title.png" alt="title.png" /></a>
+      <a class="navbar-brand" href="<?php 
+			if(isset($_SESSION['loged_id'])){
+				echo 'https://gois.me/main.php';
+			}
+			else{
+				echo 'https://gois.me/index.php';
+			}
+			?>"><img src="image/title.png" alt="title.png" /></a>
     </div>
 		<form class="navbar-form navbar-right" style="margin-top:25px;">
 		<?php
