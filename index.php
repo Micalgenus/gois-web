@@ -197,6 +197,10 @@ $("#loadLogout").click(function(){
 
   xhttp.send("logout=true");
 });
+
+$("#insertInbody").click(function(){
+	document.location.href='insertinbody.php';
+});
 </script>
 
 </body>
