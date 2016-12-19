@@ -16,7 +16,7 @@
 			<ul class="nav navbar-nav">
 					<li style="font-size:15px; margin-top:18px;"><a href="sub_info.php">My information</a></li>
 					<li style="font-size:15px; margin-top:18px;"><a href="sub_ranking.php">Ranking</a></li>
-					<li style="font-size:15px; margin-top:18px;"><a href="sub_board.php">Board</a></li>
+					<li style="font-size:15px; margin-top:18px;"><a href="board_list.php">Board</a></li>
 					<li style="font-size:15px; margin-top:18px;"><a href="sub_group.php">Group</a></li>
 				</ul>
 				';
@@ -40,7 +40,32 @@
 		?>
       
 
-    </form>
-		
+    </form>	
   </div>
 </nav> 
+<script>
+$("#loadLogout").click(function(){
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			if(result == 100){
+				alert("로그아웃!");
+				document.location.href='index.php';
+			}
+    }
+  };
+  xhttp.open("POST", "./GodHose/bridge.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhttp.send("logout=true");
+});
+</script>

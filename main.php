@@ -7,6 +7,7 @@ session_start();
   <title>GOIS Test Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/mycss.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -36,9 +37,9 @@ session_start();
 		<br>
 		<table class="table table-bordered" id = "tblList"></table>
 		<ul class="pager">
-    <li><a href="#" onclick="loadTable('Pre')">Previous</a></li>
-    <li><a href="#" onclick="loadTable('Next')">Next</a></li>
-  </ul>
+			<li><a href="#" onclick="loadTable('Pre')">Previous</a></li>
+			<li><a href="#" onclick="loadTable('Next')">Next</a></li>
+		</ul>
 	</div>
 	<div class="col-sm-10">
 		<h3 class="text-left">인바디 정보</h3>
@@ -109,47 +110,7 @@ session_start();
 		<input type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" value="인바디 추가">
 		<br><br>
 		<h3 class="text-left">자유게시판</h3>
-		<table class="table text-center table-hover">
-		<colgroup>
-			<col width="10%">
-			<col>
-			<col width="15%">
-			<col width="12%">
-			<col width="10%">
-		</colgroup>
-				<thead>
-					<tr>
-						<th class="text-center">#</th>
-						<th class="text-center">Title</th>
-						<th class="text-center">Writer</th>
-						<th class="text-center">Date</th>
-						<th class="text-center">hits</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td >1</td>
-						<td class="text-left">니하오 아임 짱깨윤</td>
-						<td>Yoon</td>
-						<td>2016-02-19</td>
-						<td>23</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td class="text-left">Park</td>
-						<td>Park</td>
-						<td>2016-02-19</td>
-						<td>21</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td class="text-left">Han</td>
-						<td>Han</td>
-						<td>2016-02-19</td>
-						<td>10</td>
-					</tr>
-				</tbody>
-		</table>
+		<table class="table text-center table-hover" id="tblBoardList"></table>
 		<input type="button" class="btn btn-success btn-lg" id="loadSelect" value="정보보기">
 
 		<h1 id="demo"></h1>		
@@ -249,6 +210,53 @@ function loadTable(flag){
 }
 
 loadTable("Zero");
+
+function loadBoardList(flag){
+	var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			document.getElementById('tblBoardList').innerHTML = result;
+    }
+  }
+  xhttp.open("POST", "./GodHose/bridge.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+	xhttp.send("main_board_list_page="+flag);
+}
+
+loadBoardList("Zero");
+
+function clickBoardList(myKey){
+	var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			alert(myKey);
+    }
+  };
+  xhttp.open("POST", "./GodHose/bridge.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	var str="board_detail_key="+myKey;
+	xhttp.send(str);
+}
 
 $("#loadSelect").click(function(){
   var xhttp;

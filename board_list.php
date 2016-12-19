@@ -33,11 +33,15 @@ session_start();
 <div class="container">
 	<h3 class="text-left">자유게시판</h3>
 	<table class="table text-center table-hover" id="tblBoardList"></table>
+	<ul class="pager">
+			<li><a href="#" onclick="loadBoardList('Pre')">Previous</a></li>
+			<li><a href="#" onclick="loadBoardList('Next')">Next</a></li>
+	</ul>
 </div>
 
 <script>
 
-function loadBoardList(){
+function loadBoardList(flag){
 	var xhttp;
   if (window.XMLHttpRequest) {
     // code for modern browsers
@@ -56,11 +60,14 @@ function loadBoardList(){
   xhttp.open("POST", "./GodHose/bridge.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		
-	xhttp.send("board_list=true");
+	xhttp.send("board_list_page="+flag);
 }
 
+loadBoardList("Zero");
 
-loadBoardList();
+function clickBoardList(myKey){
+	document.location.href='board_detail.php?key='+myKey;
+}
 
 
 </script>
