@@ -30,34 +30,7 @@ session_start();
 <body>
 	<?php include 'header.php'; ?>
 	<div class="container">
-		<table class="table" id="tblBoardDetail">
-		<colgroup>
-			<col></col>
-			<col width="7%"></col>
-			<col width="7%"></col>
-		</colgroup>
-			<thead>
-				<tr>
-					<th colspan="3">Title</th>
-				</tr>
-			</thead>
-			<tbody>
-			  <tr>
-				<td>Writer</td>
-				<td>Hit</td>
-				<td>Date</td>
-			  </tr>
-			  <tr>
-				<td colspan="3" style="padding:50px 50px 50px 50px;">Mary</td>
-			  </tr>
-			  <tr>
-			  <td><button type="button" class="btn btn-default">To List</button></td>
-			  <td></td>
-			  <td><button type="button" class="btn btn-default">Delete</button></td>
-			  </tr>
-			  
-			</tbody>
-		</table>
+		<table class="table" id="tblBoardDetail"></table>
 	</div>
 	<script>
 		function loadBoardDetail(key){
@@ -83,6 +56,44 @@ session_start();
 		}
 
 		loadBoardDetail("<?php echo $_GET['key'] ?>");
+
+		function deleteBoardDetail(key){
+			var xhttp;
+			if (window.XMLHttpRequest) {
+				// code for modern browsers
+				xhttp = new XMLHttpRequest();
+				} else {
+				// code for IE6, IE5
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+
+					var result = this.responseText;
+						
+					if(result == 100){
+						alert("삭제가 완료되었습니다");
+					}
+					else{
+						alert("삭제 중에 오류가 발생했습니다");
+					}					
+					
+					document.location.href='board_list.php';
+				}
+			}
+			xhttp.open("POST", "./GodHose/bridge.php", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+			var str="";
+			str+="board_detail_delete="+key+"&";
+			str+="board_detail_id="+"<?php echo $_SESSION['loged_id']; ?>";
+
+			xhttp.send(str);
+		}
+
+		function gotoList(){
+			document.location.href='board_list.php';
+		}
 	</script>
 </body>
 </html>

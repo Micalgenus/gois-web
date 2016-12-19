@@ -5,6 +5,13 @@ session_start();
 <html lang="en">
 <head>
   <title>GOIS Test Page</title>
+  <?php
+		//logined
+		if(isset($_SESSION['loged_id'])){
+			echo '
+			<meta http-equiv="refresh" content="0; url=https://gois.me/main.php" />';
+		}
+		?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/mycss.css">

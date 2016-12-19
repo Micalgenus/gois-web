@@ -108,8 +108,9 @@ session_start();
 		</table>
 
 		<input type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" value="인바디 추가">
-		<br><br>
+		<br><br><br>
 		<h3 class="text-left">자유게시판</h3>
+		<br>
 		<table class="table text-center table-hover" id="tblBoardList"></table>
 		<input type="button" class="btn btn-success btn-lg" id="loadSelect" value="정보보기">
 
@@ -236,26 +237,7 @@ function loadBoardList(flag){
 loadBoardList("Zero");
 
 function clickBoardList(myKey){
-	var xhttp;
-  if (window.XMLHttpRequest) {
-    // code for modern browsers
-    xhttp = new XMLHttpRequest();
-    } else {
-    // code for IE6, IE5
-    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-
-			var result = this.responseText;
-			alert(myKey);
-    }
-  };
-  xhttp.open("POST", "./GodHose/bridge.php", true);
-	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-	var str="board_detail_key="+myKey;
-	xhttp.send(str);
+	document.location.href='board_detail.php?key='+myKey;
 }
 
 $("#loadSelect").click(function(){
@@ -280,7 +262,7 @@ $("#loadSelect").click(function(){
 	var str="select_id=<?php echo $_SESSION['loged_id']; ?>";
 	xhttp.send(str);
 });
-
+/*
 $("#loadLogout").click(function(){
   var xhttp;
   if (window.XMLHttpRequest) {
@@ -305,7 +287,7 @@ $("#loadLogout").click(function(){
 
   xhttp.send("logout=true");
 });
-
+*/
 $("#sendMyInbody").click(function(){	
   var xhttp;
   if (window.XMLHttpRequest) {

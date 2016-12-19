@@ -30,6 +30,24 @@ session_start();
 <body>
 	<?php include 'header.php'; ?>
 	<div class="container">
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a href="#" class="list-group-item">
+					<div>
+						<span class="glyphicons glyphicons-group">aaa</span>
+					</div>
+				</a>
+				<a href="#" class="list-group-item">Second item</a>
+				<a href="#" class="list-group-item">Third item</a>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a href="#" class="list-group-item">First item</a>
+				<a href="#" class="list-group-item">Second item</a>
+				<a href="#" class="list-group-item">Third item</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

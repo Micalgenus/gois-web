@@ -7,6 +7,7 @@ session_start();
   <title>GOIS Test Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/mycss.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -35,6 +36,7 @@ session_start();
 	<table class="table text-center table-hover" id="tblBoardList"></table>
 	<ul class="pager">
 			<li><a href="#" onclick="loadBoardList('Pre')">Previous</a></li>
+			<li><a href="board_write.php"><span class="glyphicon glyphicon-pencil"></span> Write</a></li>
 			<li><a href="#" onclick="loadBoardList('Next')">Next</a></li>
 	</ul>
 </div>

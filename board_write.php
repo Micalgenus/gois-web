@@ -67,7 +67,7 @@ function boardWrite(){
 			else{
 				alert("알 수 없는 오류가 발생했습니다");
 			}
-			document.location.href='main.php';
+			document.location.href='board_list.php';
     }
   };
   xhttp.open("POST", "./GodHose/bridge.php", true);

@@ -30,50 +30,81 @@ session_start();
 <body>
 	<?php include 'header.php'; ?>
 	<div class="container ">
-		<div class="panel panel-default" style="margin-top:15px;">
-		<!-- Default panel contents -->
-			<div class="panel-heading" >Ranking</div>
-			<table class="table text-center">
-			<colgroup>
-				<col width="10%"></col>
-				<col></col>
-				<col width="20%"></col>
-				<col width="20%"></col>
-				<col width="20%"></col>
-			</colgroup>
-				<thead>
-					<tr>
-						<th class="text-center">#</th>
-						<th class="text-center">User Name</th>
-						<th class="text-center">Score</th>
-						<th class="text-center">Pre-Score</th>
-						<th class="text-center">Steps</th>
-					<tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Yoon</td>
-						<td>99</td>
-						<td></td>
-						<td><span class="glyphicon glyphicon-chevron-up"></span> 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Park</td>
-						<td>90</td>
-						<td></td>
-						<td><span class="glyphicon glyphicon-minus"></span></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Han</td>
-						<td>1</td>
-						<td></td>
-						<td><span class="glyphicon glyphicon-chevron-down"></span> 2</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="col-sm-6">
+			<div class="panel panel-default" style="margin-top:15px;">
+			<!-- Default panel contents -->
+				<div class="panel-heading" >Inbody Ranking</div>
+				<table class="table text-center">
+				<colgroup>
+					<col width="10%"></col>
+					<col></col>
+					<col width="20%"></col>
+				</colgroup>
+					<thead>
+						<tr>
+							<th class="text-center">#</th>
+							<th class="text-center">User Name</th>
+							<th class="text-center">Score</th>
+						<tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Yoon</td>
+							<td>99</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Park</td>
+							<td>90</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Han</td>
+							<td>1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panel panel-default" style="margin-top:15px;">
+			<!-- Default panel contents -->
+				<div class="panel-heading" >Social Ranking</div>
+				<table class="table text-center">
+				<colgroup>
+					<col width="10%"></col>
+					<col></col>
+					<col width="20%"></col>
+					<col width="20%"></col>
+					<col width="20%"></col>
+				</colgroup>
+					<thead>
+						<tr>
+							<th class="text-center">#</th>
+							<th class="text-center">User Name</th>
+							<th class="text-center">Score</th>
+						<tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Yoon</td>
+							<td>99</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Park</td>
+							<td>90</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Han</td>
+							<td>1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

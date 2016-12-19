@@ -4,8 +4,12 @@ html{
 
 
 body{
-	background-color:#f1f1f1;
+	background-color:#f1f1f1!important;
 	margin:0;
+}
+
+table{
+	background-color:white !important;
 }
 
 span.omgHelp{
