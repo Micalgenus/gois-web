@@ -15,6 +15,10 @@
 		//logined
 		if(isset($_SESSION['loged_id'])){
 			echo '
+			<ul>
+				<il>a</il>
+				<il>b</il>
+			</ul>
 			<input type="button" class="btn btn-default" id="loadLogout" value="로그아웃">';
 		}
 		//unlogined

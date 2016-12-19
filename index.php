@@ -54,6 +54,8 @@ session_start();
 							</label>
 						</div>
 						<br>
+						<input type="text" class="form-control input-lg" id="account_key" placeholder="인증 키(없을 시 공백)">
+						<br>
 						<input type="button" class="btn btn-success btn-lg" id="loadAccount" value="가입하기">
 				</form>
 				
@@ -127,6 +129,10 @@ $("#loadAccount").click(function(){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	var str="";
+	
+	var len = $("#account_key").val().length;
+	if(len > 0)str+="account_key="+$("#account_key").val()+"&";
+
 	str+="account_id="+$("#account_id").val()+"&";
 	str+="account_pw="+$("#account_pw").val()+"&";
 	str+="account_nickname="+$("#account_nickname").val()+"&";
@@ -134,7 +140,7 @@ $("#loadAccount").click(function(){
 	str+="account_birth="+$("#account_birth").val()+"&";
 	str+="account_sex="+$("#account_sex input:checked").val();
 
-  xhttp.send(str);
+  //xhttp.send(str);
 	
 });
 
