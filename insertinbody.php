@@ -39,8 +39,7 @@ session_start();
 				<form class="form-horizontal">
 
 						<input type="date" class="form-control input-lg" id="mdate" placeholder="검사 날짜">
-						<input type="text" class="form-control input-lg" id="agency" placeholder="기관 키">
-						<input type="text" class="form-control input-lg" id="ukey" placeholder="사용자 키">
+						<input type="text" class="form-control input-lg" id="id" placeholder="아이디">
 						<input type="text" class="form-control input-lg" id="wicell" placeholder="세포내수분">
 						<input type="text" class="form-control input-lg" id="wocell" placeholder="세포외수분">
 						<input type="text" class="form-control input-lg" id="protein" placeholder="단백질">
@@ -89,7 +88,6 @@ $("#sendinbody").click(function(){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	var str="";
-	str+="agency="+$("#agency").val()+"&";
 	str+="id="+$("#id").val()+"&";
 	str+="mdate="+$("#mdate").val()+"&";
 	str+="wicell="+$("#wicell").val()+"&";
