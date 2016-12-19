@@ -23,7 +23,8 @@
         <input type="text" class="form-control" id="login_id" placeholder="아이디">
 				<input type="password" class="form-control" id="login_pw" placeholder="비밀번호">
       </div>
-			<input type="button" class="btn btn-default" id="loadLogin" value="로그인">';
+			<input type="button" class="btn btn-default" id="loadLogin" value="로그인">
+			<input type="button" class="btn btn-default" id="insertInbody" value="인바디">';
 		}
 		?>
       

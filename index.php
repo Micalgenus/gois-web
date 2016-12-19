@@ -80,7 +80,7 @@ session_start();
 
 <script>
 
-$("#loadAccount").click(function(){
+$("#loadAccount").click(function(){	
   var xhttp;
   if (window.XMLHttpRequest) {
     // code for modern browsers
@@ -113,6 +113,12 @@ $("#loadAccount").click(function(){
 			else if(result == 501 || result == 510){
 				alert("등록할 수 없는 별명 형식입니다");
 			}
+			else if(result == 501 || result == 510){
+				alert("등록할 수 없는 별명 형식입니다");
+			}
+			else if(result == 700 || result == 710){
+				alert("등록할 수 없는 생일 형식 입니다");
+			}
 
 			document.getElementById('demo').innerHTML=result;
     }
@@ -129,6 +135,7 @@ $("#loadAccount").click(function(){
 	str+="account_sex="+$("#account_sex input:checked").val();
 
   xhttp.send(str);
+	
 });
 
 $("#loadLogin").click(function(){
