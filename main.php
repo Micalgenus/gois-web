@@ -32,6 +32,10 @@ session_start();
   
 <div class="container">
 
+<table class="table" id = "tblList">
+    
+  </table>
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -75,6 +79,54 @@ session_start();
 </div>
 
 <script>
+
+function clickInbodyList(myKey){
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			document.getElementById('demo').innerHTML=result;
+    }
+  };
+  xhttp.open("POST", "./GodHose/bridge.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	var str="detail_key="+myKey;
+	xhttp.send(str);
+}
+
+function loadTable(){
+	var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				document.getElementById('tblList').innerHTML=result;
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="info_list_id=<?php echo $_SESSION['loged_id']; ?>";
+		xhttp.send(str);
+}
+
+loadTable();
 
 $("#loadSelect").click(function(){
   var xhttp;
