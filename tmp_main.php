@@ -33,10 +33,6 @@ session_start();
 <div class="container">
 	<div class="col-sm-2">
 		<table class="table table-bordered" id = "tblList"></table>
-		<ul class="pager">
-    <li><a href="#">Previous</a></li>
-    <li><a href="#">Next</a></li>
-  </ul>
 	</div>
 	<div class="col-sm-10">
 		<table class="table table-bordered" id = "tblDetail">
