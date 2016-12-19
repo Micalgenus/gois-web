@@ -7,6 +7,7 @@ session_start();
   <title>GOIS Test Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/mycss.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -69,7 +70,7 @@ session_start();
 		</div>
 	</div>
 
-	
+	<!--
 	<div class="row">
 		<p id="demo">test...</p>
 		<form method="post" action="./GodHose/bridge.php">
@@ -77,7 +78,7 @@ session_start();
 			<input type="submit">
 		</form>
 	</div>
-	
+	-->
 </div>
 
 <script>
@@ -118,11 +119,12 @@ $("#loadAccount").click(function(){
 			else if(result == 501 || result == 510){
 				alert("등록할 수 없는 별명 형식입니다");
 			}
+			else if(result == 601 || result == 701 || result == 801){
+				alert("기존 인바디 정보와 일치하지 않는 개인 정보입니다");
+			}
 			else if(result == 700 || result == 710){
 				alert("등록할 수 없는 생일 형식 입니다");
 			}
-
-			document.getElementById('demo').innerHTML=result;
     }
   };
   xhttp.open("POST", "./GodHose/bridge.php", true);
@@ -140,7 +142,7 @@ $("#loadAccount").click(function(){
 	str+="account_birth="+$("#account_birth").val()+"&";
 	str+="account_sex="+$("#account_sex input:checked").val();
 
-  //xhttp.send(str);
+  xhttp.send(str);
 	
 });
 
@@ -157,7 +159,6 @@ $("#loadLogin").click(function(){
     if (this.readyState == 4 && this.status == 200) {
 
 			var result = this.responseText;
-			document.getElementById('demo').innerHTML=result;
 
 			if(result == 100){
 				alert("로그인 성공!");

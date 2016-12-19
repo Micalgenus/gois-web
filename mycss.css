@@ -81,3 +81,6 @@ div.incontent {
 }
 
 .login_box {margin-top: 100px; width: 1000px; height: 300px; border: 2px sold #000; background-color:#0091E4;}
+
+.header_sub {display : inline;}
+.header_sub li {color : #ffffff;}
