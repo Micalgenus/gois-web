@@ -150,12 +150,14 @@ session_start();
 					</tr>
 				</tbody>
 		</table>
+		<input type="button" class="btn btn-success btn-lg" id="loadSelect" value="정보보기">
+
 		<h1 id="demo"></h1>		
 		<div class="row">
 			<div class="pull-left">
 				<form class="form-horizontal">
 					
-					<input type="button" class="btn btn-success btn-lg" id="loadSelect" value="정보보기">
+					
 				</form>
 			</div>
 		</div>

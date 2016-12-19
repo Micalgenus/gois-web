@@ -10,11 +10,18 @@
 			}
 			?>"><img src="image/title.png" alt="title.png" /></a>
     </div>
-	<ul class="nav navbar-nav">
-				<li style="text-size:20px;"><a href="#">My information</a></li>
-				<li><a href="#">Ranking</a></li>
-				<li><a href="#">Board</a></li>
-			</ul>
+		<?php
+		if(isset($_SESSION['loged_id'])){
+			echo '
+			<ul class="nav navbar-nav">
+					<li style="font-size:15px; margin-top:18px;"><a href="sub_info.php">My information</a></li>
+					<li style="font-size:15px; margin-top:18px;"><a href="sub_ranking.php">Ranking</a></li>
+					<li style="font-size:15px; margin-top:18px;"><a href="sub_board.php">Board</a></li>
+					<li style="font-size:15px; margin-top:18px;"><a href="sub_group.php">Group</a></li>
+				</ul>
+				';
+		}
+		?>
 		<form class="navbar-form navbar-right" style="margin-top:25px;">
 		<?php
 		//logined

@@ -31,25 +31,14 @@ session_start();
 <?php include 'header.php'; ?>
   
 <div class="container">
-		
-	<div class="form-group text-left" style="margin-top:10px;">
-		<label for="Title">Title:</label>
-		<input type="text" class="form-control" id="board_write_title">
-	</div>
-	<div class="form-group text-left">
-		<label for="comment">Contents:</label>
-		<textarea class="form-control" rows="15" id="board_write_contents"></textarea>
-	</div>
-	<div class="btn-group text-center">
-		<button type="submit" class="btn btn-default text-right" onclick="boardWrite()"><span class="glyphicon glyphicon-ok"></span> OK</button>
-		<a href="2.html" type="button" class="btn btn-default text-right"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
-	</div>
+	<h3 class="text-left">자유게시판</h3>
+	<table class="table text-center table-hover" id="tblBoardList"></table>
 </div>
 
 <script>
 
-function boardWrite(){
-  var xhttp;
+function loadBoardList(){
+	var xhttp;
   if (window.XMLHttpRequest) {
     // code for modern browsers
     xhttp = new XMLHttpRequest();
@@ -61,30 +50,19 @@ function boardWrite(){
     if (this.readyState == 4 && this.status == 200) {
 
 			var result = this.responseText;
-			if(result == 100){
-				alert("성공적으로 게시되었습니다");
-			}
-			else{
-				alert("알 수 없는 오류가 발생했습니다");
-			}
-			document.location.href='main.php';
+			document.getElementById('tblBoardList').innerHTML = result;
     }
-  };
+  }
   xhttp.open("POST", "./GodHose/bridge.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-	if($('#board_write_title').val().length <= 0)alert("제목이 비어 있습니다");
-	else if($('#board_write_contents').val().length <= 0)alert("내용이 비어 있습니다");
-	else{
-		var str="";
-		str+="board_write_id=<?php echo $_SESSION['loged_id']; ?>"+"&";
-		str+="board_write_title="+$('#board_write_title').val()+"&";
-		str+="board_write_contents="+$('#board_write_contents').val();
 		
-		xhttp.send(str);
-
-	}
+	xhttp.send("board_list=true");
 }
+
+
+loadBoardList();
+
+
 </script>
 
 </body>
