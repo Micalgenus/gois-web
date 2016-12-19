@@ -1,5 +1,6 @@
 <?php
 session_start();
+setcookie('info_list_page', 0, time() + (86400 * 30), "/main.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

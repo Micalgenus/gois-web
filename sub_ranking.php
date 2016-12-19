@@ -33,44 +33,14 @@ session_start();
 		<div class="col-sm-6">
 			<div class="panel panel-default" style="margin-top:15px;">
 			<!-- Default panel contents -->
-				<div class="panel-heading" >Inbody Ranking</div>
-				<table class="table text-center">
-				<colgroup>
-					<col width="10%"></col>
-					<col></col>
-					<col width="20%"></col>
-				</colgroup>
-					<thead>
-						<tr>
-							<th class="text-center">#</th>
-							<th class="text-center">User Name</th>
-							<th class="text-center">Score</th>
-						<tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Yoon</td>
-							<td>99</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Park</td>
-							<td>90</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Han</td>
-							<td>1</td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="panel-heading" >Social Ranking</div>
+				<table class="table text-center" id="tblSocialRank"></table>
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div class="panel panel-default" style="margin-top:15px;">
 			<!-- Default panel contents -->
-				<div class="panel-heading" >Social Ranking</div>
+				<div class="panel-heading" >Inbody Ranking</div>
 				<table class="table text-center">
 				<colgroup>
 					<col width="10%"></col>
@@ -107,5 +77,30 @@ session_start();
 			</div>
 		</div>
 	</div>
+	<script>
+	function loadSocialRanking(){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				document.getElementById('tblSocialRank').innerHTML = result;
+			}
+		}
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+		xhttp.send("rank_list_social=true");
+	}
+
+	loadSocialRanking();
+	</script>
 </body>
 </html>

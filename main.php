@@ -40,6 +40,10 @@ session_start();
 			<li><a href="#" onclick="loadTable('Pre')">Previous</a></li>
 			<li><a href="#" onclick="loadTable('Next')">Next</a></li>
 		</ul>
+		<br>
+		<div class="panel-heading" >Social Ranking</div>
+			<table class="table text-center" id="tblSocialRank"></table>
+		</div>
 	</div>
 	<div class="col-sm-10">
 		<h3 class="text-left">인바디 정보</h3>
@@ -86,6 +90,10 @@ session_start();
 				</tr>
 				<tr>
 					<td>체중</td>
+					<td>NONE</td>
+				</tr>
+				<tr>
+					<td>신장</td>
 					<td>NONE</td>
 				</tr>
 				<tr>
@@ -144,6 +152,7 @@ session_start();
 						<input type="text" class="form-control input-lg" id="mineral" placeholder="무기질">
 						<input type="text" class="form-control input-lg" id="body_fat" placeholder="체지방">
 						<input type="text" class="form-control input-lg" id="weight" placeholder="체중">
+						<input type="text" class="form-control input-lg" id="height" placeholder="신장">
 						<input type="text" class="form-control input-lg" id="s_muscle" placeholder="골격근량">
 						<input type="text" class="form-control input-lg" id="bmi" placeholder="BMI">
 						<input type="text" class="form-control input-lg" id="p_body_fat" placeholder="체지방률">
@@ -318,6 +327,7 @@ $("#sendMyInbody").click(function(){
 	str+="mineral="+$("#mineral").val()+"&";
 	str+="body_fat="+$("#body_fat").val()+"&";
 	str+="weight="+$("#weight").val()+"&";
+	str+="height="+$("#height").val()+"&";
 	str+="s_muscle="+$("#s_muscle").val()+"&";
 	str+="bmi="+$("#bmi").val()+"&";
 	str+="p_body_fat="+$("#p_body_fat").val()+"&";
