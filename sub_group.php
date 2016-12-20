@@ -41,19 +41,31 @@ session_start();
 					</a>
 					<li href="#" class="list-group-item">
 						<div style="text-align:center;">
-							그룹 참가하기 <button type="button" class="btn btn-success">Join in</button>
+							<div class="col-xs-8">
+								<input class="form-control" id="ex1" type="text">
+							</div>
+							참가하기 
+							<button type="button" class="btn btn-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</button>
 						</div>
 					</li>
 					<li href="#" class="list-group-item">
 						<div style="text-align:center;">
-							자신이 속한 그룹 탈퇴하기 <button type="button" class="btn btn-danger">Withdraw</button>
+							<div class="col-xs-8">
+								<input class="form-control" id="ex1" type="text">
+							</div>
+							탈퇴하기 
+							<button type="button" class="btn btn-danger">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
 						</div>
 					</li>
 				</ul>
 			</div>
 			<div class="col-sm-4">
 				<div class="panel panel-default">
-					<div class="panel-heading">Group List</div>
+					<div class="panel-heading">My Group List</div>
 					<div class="panel-body">
 						<div class="list-group">
 							<a href="#" class="list-group-item">First item</a>

@@ -40,10 +40,12 @@ session_start();
 			<li><a href="#" onclick="loadTable('Pre')">Previous</a></li>
 			<li><a href="#" onclick="loadTable('Next')">Next</a></li>
 		</ul>
-		<br>
-		<div class="panel-heading" >Social Ranking</div>
+		<br><br>
+		<h4 class="text-left">소셜 랭킹</h4>
 			<table class="table text-center" id="tblSocialRank"></table>
-		</div>
+		<br>
+		<h4 class="text-left">인바디 랭킹</h4>
+			<table class="table text-center" id="tblInbodyRank"></table>
 	</div>
 	<div class="col-sm-10">
 		<h3 class="text-left">인바디 정보</h3>
@@ -271,6 +273,55 @@ $("#loadSelect").click(function(){
 	var str="select_id=<?php echo $_SESSION['loged_id']; ?>";
 	xhttp.send(str);
 });
+
+function loadSocialRanking(){
+	var xhttp;
+	if (window.XMLHttpRequest) {
+		// code for modern browsers
+		xhttp = new XMLHttpRequest();
+		} else {
+		// code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			document.getElementById('tblSocialRank').innerHTML = result;
+		}
+	}
+	xhttp.open("POST", "./GodHose/bridge.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+	xhttp.send("main_rank_list_social=true");
+}
+
+loadSocialRanking();
+
+function loadInbodyRanking(){
+	var xhttp;
+	if (window.XMLHttpRequest) {
+		// code for modern browsers
+		xhttp = new XMLHttpRequest();
+		} else {
+		// code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			document.getElementById('tblInbodyRank').innerHTML = result;
+		}
+	}
+	xhttp.open("POST", "./GodHose/bridge.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+	xhttp.send("main_rank_list_inbody=true");
+}
+
+loadInbodyRanking();
+
 /*
 $("#loadLogout").click(function(){
   var xhttp;
@@ -310,8 +361,10 @@ $("#sendMyInbody").click(function(){
     if (this.readyState == 4 && this.status == 200) {
 
 			var result = this.responseText;
+			
 
 			document.getElementById('demo').innerHTML=result;
+			document.location.href='main.php';
     }
   };
   xhttp.open("POST", "./GodHose/bridge.php", true);

@@ -41,39 +41,7 @@ session_start();
 			<div class="panel panel-default" style="margin-top:15px;">
 			<!-- Default panel contents -->
 				<div class="panel-heading" >Inbody Ranking</div>
-				<table class="table text-center">
-				<colgroup>
-					<col width="10%"></col>
-					<col></col>
-					<col width="20%"></col>
-					<col width="20%"></col>
-					<col width="20%"></col>
-				</colgroup>
-					<thead>
-						<tr>
-							<th class="text-center">#</th>
-							<th class="text-center">User Name</th>
-							<th class="text-center">Score</th>
-						<tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Yoon</td>
-							<td>99</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Park</td>
-							<td>90</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Han</td>
-							<td>1</td>
-						</tr>
-					</tbody>
-				</table>
+				<table class="table text-center" id="tblInbodyRank"></table>
 			</div>
 		</div>
 	</div>
@@ -101,6 +69,30 @@ session_start();
 	}
 
 	loadSocialRanking();
+
+	function loadInbodyRanking(){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				document.getElementById('tblInbodyRank').innerHTML = result;
+			}
+		}
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+		xhttp.send("rank_list_inbody=true");
+	}
+
+	loadInbodyRanking();
 	</script>
 </body>
 </html>

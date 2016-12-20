@@ -30,6 +30,72 @@ session_start();
 <body>
 	<?php include 'header.php'; ?>
 	<div class="container">
+
+		<h3><span class="glyphicon glyphicon-user"></span>  개인 정보</h3>
+		<ul class="list-group">
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="id_value"></h3>
+				<p class="list-group-item-text">ID</p>
+			</li>
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="name_value"></h3>
+				<p class="list-group-item-text">이름</p>
+			</li>
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="sex_value"></h3>
+				<p class="list-group-item-text">성별</p>
+			</li>
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="birth_value"></h3>
+				<p class="list-group-item-text">생년월일</p>
+			</li>
+		</ul>
+		<hr>
+		<h3><span class="glyphicon glyphicon-heart"></span>  활동 정보</h3>
+		<ul class="list-group">
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="nick_value"></h3>
+				<p class="list-group-item-text">별명</p>
+			</li>
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="ip_value"></h3>
+				<p class="list-group-item-text">Inbody Point</p>
+			</li>
+			<li href="#" class="list-group-item">
+				<h3 class="list-group-item-heading" id="sp_value"></h3>
+				<p class="list-group-item-text">Social Point</p>
+			</li>
+		</ul>
 	</div>
+
+	<script>
+		function loadSelect(){
+			var xhttp;
+			if (window.XMLHttpRequest) {
+				// code for modern browsers
+				xhttp = new XMLHttpRequest();
+				} else {
+				// code for IE6, IE5
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+
+					var result = this.responseText;
+					var obj = JSON.parse(result);
+					document.getElementById('id_value').innerHTML="<?php echo $_SESSION['loged_id'] ?>";
+					alert(obj.key);
+					//document.getElementById('demo').innerHTML=result;
+				}
+			};
+			xhttp.open("POST", "./GodHose/bridge.php", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+			var str="select_id=<?php echo $_SESSION['loged_id']; ?>";
+			xhttp.send(str);
+		}
+
+		loadSelect();
+	</script>
 </body>
 </html>
