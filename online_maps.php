@@ -32,27 +32,30 @@ session_start();
 <?php include 'header.php'; ?>
   
 <div class="container">
+	<h3>기관 주소</h3>
 	<div id="map" style="width:100%;height:500px"></div>
 </div>
 
 <script>
+
 function myMap() {
-  var myCenter = new google.maps.LatLng(51.508742,-0.120850);
+
+  var myCenter = new google.maps.LatLng(<?php echo $_GET['lat']; ?>, <?php echo $_GET['lng']; ?>);
   var mapCanvas = document.getElementById("map");
-  var mapOptions = {center: myCenter, zoom: 5};
+  var mapOptions = {center: myCenter, zoom: 17};
   var map = new google.maps.Map(mapCanvas, mapOptions);
   var marker = new google.maps.Marker({position:myCenter});
   marker.setMap(map);
   google.maps.event.addListener(marker,'click',function() {
     var infowindow = new google.maps.InfoWindow({
-      content:"Hello World!"
+      content:"<?php echo $_GET['address']; ?>"
     });
   infowindow.open(map,marker);
   });
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeTijjbsF64U-Xfal_Rmh4-TnCtLc-wiI&callback=myMap"></script>
 
 </body>
 </html>

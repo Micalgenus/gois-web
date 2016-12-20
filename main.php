@@ -388,6 +388,37 @@ $("#sendMyInbody").click(function(){
   xhttp.send(str);
 	
 });
+
+function moveMap(akey){
+
+	var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+			var result = this.responseText;
+			var obj = JSON.parse(result);
+			var key = obj.key;
+			var address = obj.address;
+			var lat = obj.latitude;
+			var lng = obj.longitude;
+
+			document.location.href='online_maps.php?key='+key+'&address='+address+'&lat='+lat+'&lng='+lng;
+    }
+  };
+  xhttp.open("POST", "./GodHose/bridge.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	var str="";
+	str+="online_maps_akey="+akey;
+  xhttp.send(str);
+}
 </script>
 
 </body>
