@@ -42,10 +42,10 @@ session_start();
 					<li href="#" class="list-group-item">
 						<div style="text-align:center;">
 							<div class="col-xs-8">
-								<input class="form-control" id="ex1" type="text">
+								<input class="form-control" id="join_group" type="text" placeholder="그룹명">
 							</div>
 							참가하기 
-							<button type="button" class="btn btn-success">
+							<button type="button" class="btn btn-success" id="join_group_btn">
 								<span class="glyphicon glyphicon-ok"></span>
 							</button>
 						</div>
@@ -53,7 +53,7 @@ session_start();
 					<li href="#" class="list-group-item">
 						<div style="text-align:center;">
 							<div class="col-xs-8">
-								<input class="form-control" id="ex1" type="text">
+								<input class="form-control" id="exit_group" type="text" placeholder="그룹명">
 							</div>
 							탈퇴하기 
 							<button type="button" class="btn btn-danger">
@@ -67,13 +67,7 @@ session_start();
 				<div class="panel panel-default">
 					<div class="panel-heading">My Group List</div>
 					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">First item</a>
-							<a href="#" class="list-group-item">Second item</a>
-							<a href="#" class="list-group-item">Third item</a>
-							<a href="#" class="list-group-item">Fourth item</a>
-							<a href="#" class="list-group-item">Fifth item</a>
-							<a href="#" class="list-group-item">Sixth item</a>
+						<div class="list-group" id="my_group_list">
 						</div>
 					</div>
 				</div>
@@ -82,13 +76,7 @@ session_start();
 				<div class="panel panel-default">
 					<div class="panel-heading">Group Members</div>
 					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">First item</a>
-							<a href="#" class="list-group-item">Second item</a>
-							<a href="#" class="list-group-item">Third item</a>
-							<a href="#" class="list-group-item">Fourth item</a>
-							<a href="#" class="list-group-item">Fifth item</a>
-							<a href="#" class="list-group-item">Sixth item</a>
+						<div class="list-group" id="my_member_list">
 						</div>
 					</div>
 				</div>
@@ -99,45 +87,7 @@ session_start();
 			<div class="panel-heading">Selected Member's Inbody Information</div>
 			<div class="panel-body">
 				<div class="col-sm-2">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>인바디 정보 보기</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-							</tr>
-						</tbody>
-					</table>
+					<table class="table table-bordered" id="tblList"></table>
 					<ul class="pager">
 						<li><a href="#" onclick="loadTable('Pre')">Previous</a></li>
 						<li><a href="#" onclick="loadTable('Next')">Next</a></li>	
@@ -211,5 +161,164 @@ session_start();
 		</div>
 		</div>
 	</div>
+
+	<script>
+	$("#join_group_btn").click(function(){	
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				if(result == 100){
+					alert("그룹에 성공적으로 참여했습니다");
+				}
+				else if(result == 101){
+					alert("새 그룹을 생성했습니다");
+				}
+				else if(result == 201){
+					alert("올바르지 않은 ID 입니다");
+				}
+				else if(result == 202){
+					alert("올바르지 않은 그룹명 입니다");
+				}
+				else if(result == 401){
+					alert("해당 그룹엔 이미 가입한 상태입니다");
+				}
+				else{
+					alert("예기치 않은 오류가 발생했습니다");
+				}
+				document.location.href='sub_group.php';
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="join_group_id=<?php echo $_SESSION['loged_id']; ?>"+"&";
+		str+="join_group_name="+$("#join_group").val();
+
+		xhttp.send(str);
+	});
+
+	function loadGroupList(){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				document.getElementById('my_group_list').innerHTML=result;
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="group_list_id=<?php echo $_SESSION['loged_id']; ?>";
+
+		xhttp.send(str);
+	}
+	loadGroupList();
+
+	function clickGroupList(myKey){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				
+				document.getElementById('my_member_list').innerHTML=result;
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="member_list_name="+myKey;
+
+		xhttp.send(str);
+		
+	}
+
+	function clickMemberList(myId){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				document.getElementById('tblList').innerHTML=result;
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="info_list_id="+myId+"&";
+		str+="info_list_flag="+"Zero";
+
+		xhttp.send(str);
+	}
+
+	function loadTable(flag){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				document.getElementById('tblList').innerHTML=result;
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="info_list_id="+"<?php echo $_COOKIE['member_id']; ?>"+"&";
+		str+="info_list_flag="+flag;
+
+		xhttp.send(str);
+	}
+
+
+	
+	</script>
 </body>
 </html>

@@ -84,8 +84,12 @@ session_start();
 					var result = this.responseText;
 					var obj = JSON.parse(result);
 					document.getElementById('id_value').innerHTML="<?php echo $_SESSION['loged_id'] ?>";
-					alert(obj.key);
-					//document.getElementById('demo').innerHTML=result;
+					document.getElementById('name_value').innerHTML=obj.name;
+					document.getElementById('sex_value').innerHTML=obj.sex;
+					document.getElementById('birth_value').innerHTML=obj.birth;
+					document.getElementById('nick_value').innerHTML=obj.nickname;
+					document.getElementById('ip_value').innerHTML=obj.i_point;
+					document.getElementById('sp_value').innerHTML=obj.s_point;
 				}
 			};
 			xhttp.open("POST", "./GodHose/bridge.php", true);
