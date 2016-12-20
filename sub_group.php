@@ -35,8 +35,8 @@ session_start();
 				<ul class="list-group">
 					<li class="list-group-item">
 						<img src="/image/group.png" class="img-rounded" alt="group" width="200" height="200">
-						<h4 class="list-group-item-heading">Third List Group Item Heading</h4>
-						<p class="list-group-item-text">List Group Item Text</p>
+						<h4 class="list-group-item-heading">지금, 모두와 함께 하십시오!</h4>
+						<p class="list-group-item-text">그룹 관리 페이지</p>
 						
 					</a>
 					<li href="#" class="list-group-item">
@@ -56,7 +56,7 @@ session_start();
 								<input class="form-control" id="exit_group" type="text" placeholder="그룹명">
 							</div>
 							탈퇴하기 
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" id="exit_group_btn">
 								<span class="glyphicon glyphicon-remove"></span>
 							</button>
 						</div>
@@ -89,12 +89,12 @@ session_start();
 				<div class="col-sm-2">
 					<table class="table table-bordered" id="tblList"></table>
 					<ul class="pager">
-						<li><a href="#" onclick="loadTable('Pre')">Previous</a></li>
-						<li><a href="#" onclick="loadTable('Next')">Next</a></li>	
+						<li><a href="#" onclick="loadTableMember('Pre')">Previous</a></li>
+						<li><a href="#" onclick="loadTableMember('Next')">Next</a></li>	
 					</ul>
 				</div>
 				<div class="col-sm-10">
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="tblDetail">
 					<colgroup>
 						<col width="20%"></col>
 						<col></col>
@@ -107,52 +107,57 @@ session_start();
 						</thead>
 						<tbody>
 							<tr>
-								<td>날짜</td>
-								<td>2</td>
+								<td>검사 날짜</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>기관명</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>세포내수분</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>세포외수분</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>단백질</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>무기질</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>체지방</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>체중</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
+								<td>신장</td>
+								<td>NONE</td>
+							</tr>
+							<tr>
+							<tr>
 								<td>골격근량</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>BMI</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>체지방률</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 							<tr>
 								<td>복부지방률</td>
-								<td>2</td>
+								<td>NONE</td>
 							</tr>
 						</tbody>
 					</table>
@@ -163,6 +168,8 @@ session_start();
 	</div>
 
 	<script>
+	var member_id="";
+
 	$("#join_group_btn").click(function(){	
 		var xhttp;
 		if (window.XMLHttpRequest) {
@@ -208,6 +215,51 @@ session_start();
 		xhttp.send(str);
 	});
 
+	$("#exit_group_btn").click(function(){	
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				var result = this.responseText;
+				if(result == 100){
+					alert("해당 그룹에서 탈퇴했습니다");
+				}
+				else if(result == 201){
+					alert("올바르지 않은 ID 입니다");
+				}
+				else if(result == 202){
+					alert("올바르지 않은 그룹명 입니다");
+				}
+				else if(result == 401){
+					alert("해당 그룹은 존재하지 않습니다");
+				}
+				else if(result == 501){
+					alert("해당 그룹의 멤버가 아닙니다");
+				}
+				else{
+					alert("예기치 않은 오류가 발생했습니다");
+				}
+				document.location.href='sub_group.php';
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="exit_group_id=<?php echo $_SESSION['loged_id']; ?>"+"&";
+		str+="exit_group_name="+$("#exit_group").val();
+
+		xhttp.send(str);
+	});
+
 	function loadGroupList(){
 		var xhttp;
 		if (window.XMLHttpRequest) {
@@ -233,6 +285,7 @@ session_start();
 
 		xhttp.send(str);
 	}
+
 	loadGroupList();
 
 	function clickGroupList(myKey){
@@ -287,10 +340,43 @@ session_start();
 		str+="info_list_id="+myId+"&";
 		str+="info_list_flag="+"Zero";
 
+		member_id = myId;
+
 		xhttp.send(str);
 	}
 
-	function loadTable(flag){
+	function loadTableMember(flag){
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+			} else {
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+
+
+				var result = this.responseText;
+				document.getElementById('tblList').innerHTML=result;
+			}
+		};
+		xhttp.open("POST", "./GodHose/bridge.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		var str="";
+
+		str+="info_list_id="+member_id+"&";
+		str+="info_list_flag="+flag;
+
+		//alert("<?php echo $_COOKIE['member_id']; ?>");
+
+		xhttp.send(str);
+	}
+
+	function clickInbodyList(myKey){
 		var xhttp;
 		if (window.XMLHttpRequest) {
 			// code for modern browsers
@@ -303,17 +389,13 @@ session_start();
 			if (this.readyState == 4 && this.status == 200) {
 
 				var result = this.responseText;
-				document.getElementById('tblList').innerHTML=result;
+				document.getElementById('tblDetail').innerHTML=result;
 			}
 		};
 		xhttp.open("POST", "./GodHose/bridge.php", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-		var str="";
-
-		str+="info_list_id="+"<?php echo $_COOKIE['member_id']; ?>"+"&";
-		str+="info_list_flag="+flag;
-
+		var str="detail_key="+myKey;
 		xhttp.send(str);
 	}
 

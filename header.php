@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" style="padding-bottom:15px;">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom:15px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="<?php 
@@ -43,6 +43,8 @@
     </form>	
   </div>
 </nav> 
+<div style="display:block; height:100px;">
+</div>
 <script>
 $("#loadLogout").click(function(){
   var xhttp;

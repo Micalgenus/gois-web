@@ -122,7 +122,6 @@ session_start();
 		<h3 class="text-left">자유게시판</h3>
 		<br>
 		<table class="table text-center table-hover" id="tblBoardList"></table>
-		<input type="button" class="btn btn-success btn-lg" id="loadSelect" value="정보보기">
 
 		<h1 id="demo"></h1>		
 		<div class="row">
@@ -250,7 +249,7 @@ loadBoardList("Zero");
 function clickBoardList(myKey){
 	document.location.href='board_detail.php?key='+myKey;
 }
-
+/*
 $("#loadSelect").click(function(){
   var xhttp;
   if (window.XMLHttpRequest) {
@@ -273,7 +272,7 @@ $("#loadSelect").click(function(){
 	var str="select_id=<?php echo $_SESSION['loged_id']; ?>";
 	xhttp.send(str);
 });
-
+*/
 function loadSocialRanking(){
 	var xhttp;
 	if (window.XMLHttpRequest) {
